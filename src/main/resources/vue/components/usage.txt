@@ -1,0 +1,2 @@
+This folder (src\main\resources\vue\components) contains content which can be added into a view
+by a new tag <tagname></tagname>
