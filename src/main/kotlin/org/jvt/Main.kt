@@ -11,7 +11,21 @@ fun main() {
 
     app.error(404, "html", VueComponent("not-found"))
 
+    // Home page
     app.get("/", VueComponent("Home"))
+
+    // User related routes
+    app.get("/users", VueComponent("user-overview"))
+    app.get("/users/{user-id}", VueComponent("user-profile"))
+    app.error(404, "html", VueComponent("not-found"))
+
+    app.get("/api/users", UserController::getAll)
+    app.get("/api/users/{user-id}", UserController::getOne)
+
+
+
+
+
 
     app.get("/todos") { ctx -> ctx.json(todos) }
 
