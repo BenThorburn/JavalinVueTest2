@@ -6,11 +6,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class MovieDB implements AutoCloseable{
+
+public class MovieDB implements AutoCloseable {
 
     //allows us to easily change the database used
     private static final String JDBC_CONNECTION_STRING = "jdbc:sqlite:./data/dbmovies.db";
@@ -35,24 +36,30 @@ public class MovieDB implements AutoCloseable{
         try {
             Statement s = connection.createStatement();
             ResultSet results = s.executeQuery("SELECT COUNT(*) AS count FROM movies_metadata");
-            while(results.next()) { //will only execute once, because SELECT COUNT(*) returns just 1 number
+
+            while(results.next()) //will only execute once, because SELECT COUNT(*) returns just 1 number
                 result = results.getInt(results.findColumn("count"));
-            }
         }
         catch (SQLException sqle) {
             error(sqle);
-
         }
         return result;
     }
 
+
+
+
     public String getTitles() {
         String result = "";
+        JSONArray ja = new JSONArray();
         try {
             Statement s = connection.createStatement();
             ResultSet results = s.executeQuery("SELECT title FROM movies_metadata");
             while(results.next()) {
-                result += " \n" + results.getString("title") ;
+                JSONObject jo = new JSONObject();
+                jo.put("Title: ", results.getString("title"));
+                ja.put(jo);
+                //result += " \n" + results.getString("title");
             }
         }
         catch (SQLException sqle) {
@@ -60,6 +67,11 @@ public class MovieDB implements AutoCloseable{
         }
         return result;
     }
+
+
+
+
+
 
     public String getGenres(String title) {
         String result = "";
@@ -68,6 +80,7 @@ public class MovieDB implements AutoCloseable{
                     + "WHERE title = ?");
             s.setString(1,title);
             ResultSet results = s.executeQuery();
+
             while(results.next()) {
                 result = results.getString("genres") ;
             }
@@ -75,7 +88,7 @@ public class MovieDB implements AutoCloseable{
             result="";
             for(int i=0; i<jsonArray.length();i++){
                 JSONObject genre = jsonArray.getJSONObject(i);
-                result += "\n|" +genre.getString("name");
+                result += "\n|" + genre.getString("name");
             }
         }
         catch (SQLException sqle) {

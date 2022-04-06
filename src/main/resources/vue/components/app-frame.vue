@@ -1,7 +1,7 @@
 <template id="app-frame" class="app-frame">
   <html>
     <body>
-      <main class="aspp-frame">
+      <main class="app-frame">
     <!--
         <header>
             <span>SmovieP</span>
