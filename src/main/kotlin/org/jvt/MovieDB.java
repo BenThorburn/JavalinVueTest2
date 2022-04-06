@@ -57,9 +57,12 @@ public class MovieDB implements AutoCloseable {
             ResultSet results = s.executeQuery("SELECT title FROM movies_metadata");
             while(results.next()) {
                 JSONObject jo = new JSONObject();
+                /*
+                JSONObject jo = new JSONObject();
                 jo.put("Title: ", results.getString("title"));
                 ja.put(jo);
                 //result += " \n" + results.getString("title");
+                 */
             }
         }
         catch (SQLException sqle) {

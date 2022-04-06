@@ -22,8 +22,8 @@ fun main() {
 
     app.get("/movies", VueComponent("movie-overview"))
     app.get("/movies/{movie-id}", VueComponent("movie-profile"))
-    app.get("/api/movies", UserController::getAll)
-    app.get("/api/movies/{movie-id}", UserController::getOne)
+    app.get("/api/movies", MovieController::getAll)
+    app.get("/api/movies/{movie-id}", MovieController::getOne)
 
 
     app.get("/todos") { ctx -> ctx.json(todos) }
