@@ -25,9 +25,11 @@ fun main() {
     app.get("/api/movies", MovieController::getAll)
     app.get("/api/movies/{movie-id}", MovieController::getOne)
 
-    app.get("/genre/{genre}") { ctx ->
-        ctx.contentType("application/xml")
-        ctx.queryParams("genre")
+    app.get("/moo") { ctx ->
+        MovieDB().use { db ->
+            ctx.contentType("application/html")
+            ctx.json(db.numberOfEntries)
+        }
     }
 
     app.get("/todos") { ctx -> ctx.json(todos) }

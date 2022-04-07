@@ -25,24 +25,21 @@ public class MovieDB implements AutoCloseable {
     public MovieDB() {
         try {
             connection = DriverManager.getConnection(JDBC_CONNECTION_STRING);
-        }
-        catch (SQLException sqle) {
-            error(sqle);
-        }
+        } catch (SQLException sqle) { error(sqle); }
     }
 
     public int getNumberOfEntries() {
         int result = -1;
+
         try {
             Statement s = connection.createStatement();
             ResultSet results = s.executeQuery("SELECT COUNT(*) AS count FROM movies_metadata");
 
             while(results.next()) //will only execute once, because SELECT COUNT(*) returns just 1 number
                 result = results.getInt(results.findColumn("count"));
-        }
-        catch (SQLException sqle) {
-            error(sqle);
-        }
+
+        } catch (SQLException sqle) { error(sqle); }
+
         return result;
     }
 

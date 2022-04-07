@@ -2,11 +2,11 @@
   <html>
     <body>
       <main class="app-frame">
-    <!--
+
         <header>
             <span>SmovieP</span>
         </header>
-    -->
+
       <slot></slot> <!-- Needed for displaying content -->
       </main>
     </body>

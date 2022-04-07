@@ -7,9 +7,9 @@ data class User(val id: String, val name: String, val email: String, val userDet
 data class UserDetails(val dateOfBirth: String, val salary: String)
 
 val users = setOf<User>(
-    User(id = "1", name = "John", email = "john@fake.co", userDetails = UserDetails("21.02.1964", "2773 JB")),
-    User(id = "2", name = "Mary", email = "mary@fake.co", userDetails = UserDetails("12.05.1994", "1222 JB")),
-    User(id = "3", name = "Dave", email = "dave@fake.co", userDetails = UserDetails("01.05.1984", "1833 JB"))
+    User(id = "1", name = "Johfrfn", email = "john@fake.co", userDetails = UserDetails("21.02.1964", "2773 JB")),
+    User(id = "2", name = "Marfrefy", email = "mary@fake.co", userDetails = UserDetails("12.05.1994", "1222 JB")),
+    User(id = "3", name = "Dafrefve", email = "dave@fake.co", userDetails = UserDetails("01.05.1984", "1833 JB"))
 )
 
 object UserController {
